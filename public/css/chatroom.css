@@ -1,0 +1,32 @@
+html{
+    height: 100%;
+}
+
+body{
+    background-image: url("https://supplychainbeyond.com/wp-content/uploads/2017/08/artificial-intelligence-in-supply-chain-management-1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+}
+.header_align{
+    color:white;
+    margin-top:50px;
+}
+.button-adjust{
+    width:20%;
+    margin: 5px 35%;
+    border-radius:30px;
+}
+.ul_align{
+    padding-left:0px;
+    list-style-type: none;
+    margin:5% auto;
+    margin-bottom:30px;
+    
+}
+.ul_align li a{
+    font-size: 25px;
+    color:white;
+    width:30%;
+    margin:5px 35%;
+}

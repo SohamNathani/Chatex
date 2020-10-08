@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Chat Rooms</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    /*  html{
+    height: 100%;
+    }*/
+
+    body{
+    background-image: url("https://supplychainbeyond.com/wp-content/uploads/2017/08/artificial-intelligence-in-supply-chain-management-1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    }
+    h1{
+      text-align:center;
+      margin:10px 0px;
+    }
+    .message-style{
+      font-size:20px;
+      color:white;
+      width:400px;
+      padding:0px;
+      background-color: rgba(255,255,255,0.3);
+    }
+    .message-sending{
+      position: fixed;
+      bottom:0px;
+      width:100%;
+    }
+    </style>
+</head>
+<body>
+    <% include partials/nav %>
+    <div class="fluid-container">
+    <h2 style="display: none" id="User_name"><%= currentUser.username %></h2>
+    <h2 style="display: none" id="Chatroom_id"><%= foundChatroom._id%></h2>
+    <h1><%= foundChatroom.name %></h1>
+    <ul class="list-unstyled">
+      <% foundChatroom.chats.forEach(function (chat){ %>
+            <li class="jumbotron message-style"><%= chat.author %> :<br><%= chat.message %></li>
+      <% }); %>
+    </ul>
+    <h2 style="text-align: center">New Messages</h2>
+    <ul id="messages" class="list-unstyled" style="margin-bottom: 50px"></ul>
+    <form action="" class="message-sending">
+        <input style="min-width:95%" id="m"  autocomplete="off" required/>
+        <button class="btn btn-primary">Send</button>
+    </form>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+          var chatroomid;
+          var chatroomcheck;
+          var CurrentUser
+          $(document).ready(function(){
+            chatroomid = $("#Chatroom_id").html();
+          })
+          $(document).ready(function(){
+            CurrentUser = $("#User_name").html();
+          })
+          var socket = io();
+          $('form').submit(function(e){
+            e.preventDefault(); // prevents page reloading
+            
+            socket.emit('chatroom id', chatroomid)
+            socket.emit('current user', CurrentUser)
+            socket.emit('chat message', $('#m').val());
+            $('#m').val('');
+            return false;
+          });
+          socket.on('chatroom check', function(chatroom_check){
+            chatroomcheck = chatroom_check;
+          })
+          socket.on('new message', function(msg){
+              console.log(msg);
+              if(chatroomcheck === chatroomid){
+                  var a = $('<li>');
+                  a.addClass("jumbotron message-style");
+                  $('#messages').append(a.text(msg.author + ": " + msg.message));
+                  
+          }});
+        });
+      </script>
+</body>
+</html>

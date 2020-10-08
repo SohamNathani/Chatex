@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Rooms</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/newchatroom.css">
+</head>
+<body>
+    <% include partials/nav %>
+    <h1 class="label-header">New Chatroom</h1>
+    <div class="container form-maintain">
+    <form class="form-group" action="/chatroom" method="POST">
+        <label class="from-label" for="exampleInputEmail1">Chatroom Name</label>
+        <input type="text" name="Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name" required>
+        <small id="emailHelp" class="form-text text-muted">Do not repeat groups</small>
+        <button type="submit" class="btn btn-info button-adjust">Submit</button>
+      </form>
+    </div>  
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to Chatex</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="./css/authentication.css">
+        
+    </head>
+    <body>
+        <% include partials/nav %>
+        <h1 class="label-header">Sign Up Form</h1>
+        <div class="container form-maintain">
+         <form class="form-group" action="/register" method="POST">
+            <label class="form-label" for="Email">Email address</label>
+            <input class="form-control" id="Email" type="text" name="username" required placeholder="Username">
+            <label class="form-label" for="Password">Password</label>
+            <input class="form-control" id="Password" type="password" name="password" required placeholder="Password">
+            <button class="btn btn-info button-adjust">Submit</button>
+         </form>
+        </div> 
+    </body>
+</html>
